@@ -1,0 +1,211 @@
+/* ==========================================================================
+   Lumen Focus — distraction-free YouTube
+   --------------------------------------------------------------------------
+   Every rule is scoped under `html.ps-on` so the extension is fully inert
+   when the master toggle is off. JS on the content script adds/removes the
+   `html.ps-*` classes; nothing here runs on its own.
+   ========================================================================== */
+
+/* ---- Shared transitions so hides feel intentional, not flickery ---------- */
+html.ps-on ytd-watch-flexy #secondary,
+html.ps-on ytd-watch-next-secondary-results-renderer,
+html.ps-on #comments,
+html.ps-on ytd-comments,
+html.ps-on ytd-masthead,
+html.ps-on #related,
+html.ps-on ytd-merch-shelf-renderer {
+  transition: opacity 0.25s ease;
+}
+
+/* ==========================================================================
+   1. Hide recommendations / sidebar / end screens
+   ========================================================================== */
+html.ps-on.ps-hide-recs ytd-watch-flexy #secondary,
+html.ps-on.ps-hide-recs ytd-watch-next-secondary-results-renderer,
+html.ps-on.ps-hide-recs #related,
+html.ps-on.ps-hide-recs ytd-compact-video-renderer,
+html.ps-on.ps-hide-recs ytd-compact-playlist-renderer,
+html.ps-on.ps-hide-recs ytd-merch-shelf-renderer,
+html.ps-on.ps-hide-recs .ytp-ce-element,
+html.ps-on.ps-hide-recs .ytp-autonav-endscreen,
+html.ps-on.ps-hide-recs .ytp-pause-overlay,
+html.ps-on.ps-hide-recs .ytp-suggestion-set,
+html.ps-on.ps-hide-recs ytd-rich-grid-renderer,
+html.ps-on.ps-hide-recs ytd-rich-shelf-renderer:not([is-shorts]) {
+  display: none !important;
+}
+
+/* Give the player the full width once the rail is gone. */
+html.ps-on.ps-hide-recs ytd-watch-flexy #primary {
+  max-width: 100% !important;
+}
+
+/* ==========================================================================
+   2. Hide comments
+   ========================================================================== */
+html.ps-on.ps-hide-comments #comments,
+html.ps-on.ps-hide-comments ytd-comments,
+html.ps-on.ps-hide-comments ytd-comments-header-renderer,
+html.ps-on.ps-hide-comments ytd-comment-thread-renderer,
+html.ps-on.ps-hide-comments #teaser-carousel {
+  display: none !important;
+}
+
+/* ==========================================================================
+   3. Hide Shorts (shelves, nav entry, standalone player)
+   ========================================================================== */
+html.ps-on.ps-hide-shorts ytd-reel-shelf-renderer,
+html.ps-on.ps-hide-shorts ytd-rich-shelf-renderer[is-shorts],
+html.ps-on.ps-hide-shorts ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
+html.ps-on.ps-hide-shorts ytd-guide-entry-renderer:has(a[title="Shorts"]),
+html.ps-on.ps-hide-shorts ytd-mini-guide-entry-renderer[aria-label="Shorts"],
+html.ps-on.ps-hide-shorts ytm-shorts-lockup-view-model,
+html.ps-on.ps-hide-shorts ytd-reel-item-renderer {
+  display: none !important;
+}
+
+/* If someone lands directly on a Shorts URL, tell them why it's blank. */
+html.ps-on.ps-hide-shorts.ps-on-shorts-page #shorts-container {
+  display: none !important;
+}
+
+/* ==========================================================================
+   4. Hide the masthead (search bar / account chrome)
+   ========================================================================== */
+html.ps-on.ps-hide-masthead ytd-masthead,
+html.ps-on.ps-hide-masthead #masthead-container {
+  display: none !important;
+}
+
+/* With no masthead, reclaim the offset YouTube reserves for it. */
+html.ps-on.ps-hide-masthead ytd-app {
+  --ytd-masthead-height: 0px !important;
+}
+html.ps-on.ps-hide-masthead ytd-page-manager,
+html.ps-on.ps-hide-masthead #page-manager {
+  margin-top: 0 !important;
+}
+
+/* ==========================================================================
+   5. Block the home feed (the algorithm's front door)
+   ========================================================================== */
+html.ps-on.ps-block-home ytd-browse[page-subtype="home"] #contents,
+html.ps-on.ps-block-home ytd-browse[page-subtype="home"] ytd-rich-grid-renderer,
+html.ps-on.ps-block-home ytd-two-column-browse-results-renderer,
+html.ps-on.ps-block-home ytd-rich-grid-row {
+  display: none !important;
+}
+
+/* ==========================================================================
+   6. Dim everything that is not the video
+   ========================================================================== */
+html.ps-on.ps-dim ytd-watch-flexy #secondary,
+html.ps-on.ps-dim ytd-watch-flexy #below,
+html.ps-on.ps-dim ytd-watch-flexy #meta,
+html.ps-on.ps-dim ytd-watch-flexy #info,
+html.ps-on.ps-dim ytd-masthead,
+html.ps-on.ps-dim ytd-comments {
+  opacity: 0.12;
+}
+
+html.ps-on.ps-dim ytd-watch-flexy #secondary:hover,
+html.ps-on.ps-dim ytd-watch-flexy #below:hover,
+html.ps-on.ps-dim ytd-watch-flexy #meta:hover,
+html.ps-on.ps-dim ytd-watch-flexy #info:hover {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   7. The focus screen injected over a blocked home feed
+   ========================================================================== */
+#ps-focus-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  text-align: center;
+  padding: 24px;
+  background: radial-gradient(circle at 50% 25%, #0f2027 0%, #0b1220 45%, #060913 100%);
+  color: #e2e8f0;
+  font-family: Roboto, "Segoe UI", system-ui, sans-serif;
+}
+
+#ps-focus-screen .ps-logo {
+  font-size: 13px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #22d3ee;
+  font-weight: 700;
+}
+
+#ps-focus-screen h1 {
+  font-size: 30px;
+  line-height: 1.25;
+  margin: 0;
+  max-width: 620px;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+#ps-focus-screen p {
+  margin: 0;
+  max-width: 520px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #94a3b8;
+}
+
+#ps-focus-screen .ps-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 6px;
+}
+
+#ps-focus-screen button {
+  cursor: pointer;
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  background: linear-gradient(135deg, #06b6d4, #4f46e5);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px 22px;
+  border-radius: 12px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+#ps-focus-screen button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(34, 211, 238, 0.28);
+}
+
+#ps-focus-screen button.ps-ghost {
+  background: transparent;
+  color: #94a3b8;
+  border-color: rgba(148, 163, 184, 0.28);
+}
+
+#ps-focus-screen button.ps-ghost:hover {
+  box-shadow: none;
+  color: #e2e8f0;
+}
+
+#ps-focus-screen .ps-hint {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+#ps-focus-screen kbd {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 1px 6px;
+  font-size: 11px;
+  color: #cbd5e1;
+}

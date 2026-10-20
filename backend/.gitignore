@@ -1,0 +1,56 @@
+# ========================
+# Backend — Python / FastAPI
+# ========================
+
+# Environment secrets — NEVER commit these
+.env
+.env.*
+!.env.example
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+virtualenv/
+
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+
+# Distribution / packaging
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Type checking
+.mypy_cache/
+.dmypy.json
+.pyre/
+.pytype/
+.ruff_cache/
+
+# Testing & coverage
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Logs
+*.log
+logs/
+
+# Misc
+*.bak
+*.tmp
+
+# Derived artifact: regenerate with `python -m scripts.recover_chunks <sqlite> recovered_chunks.json`
+recovered_chunks.json
+
+# Database backups written by `python -m scripts.wipe_database`
+backups/

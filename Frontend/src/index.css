@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --tertiary-container: 209 250 229;
+    --outline: 148 163 184;
+    --inverse-surface: 30 41 59;
+    --inverse-on-surface: 248 250 252;
+    --on-background: 15 23 42;
+    --surface-dim: 241 245 249;
+    --primary-container: 186 230 253;
+    --surface-tint: 56 189 248;
+    --on-tertiary-container: 6 78 59;
+    --on-primary-fixed-variant: 2 132 199;
+    --on-primary-fixed: 12 74 110;
+    --on-secondary-container: 76 29 149;
+    --on-secondary-fixed-variant: 124 58 237;
+    --primary-fixed: 224 242 254;
+    --on-tertiary: 255 255 255;
+    --on-tertiary-fixed-variant: 5 150 105;
+    --secondary: 139 92 246;
+    --on-secondary-fixed: 46 16 101;
+    --on-secondary: 255 255 255;
+    --tertiary-fixed: 167 243 208;
+    --on-error: 255 255 255;
+    --on-surface-variant: 71 85 105;
+    --on-primary: 255 255 255;
+    --outline-variant: 203 213 225;
+    --surface-variant: 226 232 240;
+    --primary-fixed-dim: 125 211 252;
+    --primary: 14 165 233;
+    --on-surface: 15 23 42;
+    --on-error-container: 127 29 29;
+    --tertiary-fixed-dim: 52 211 153;
+    --surface-container-highest: 203 213 225;
+    --tertiary: 16 185 129;
+    --surface-container-low: 248 250 252;
+    --surface: 255 255 255;
+    --surface-container: 241 245 249;
+    --surface-container-lowest: 255 255 255;
+    --secondary-fixed-dim: 196 181 253;
+    --on-primary-container: 3 105 161;
+    --surface-container-high: 226 232 240;
+    --error: 239 68 68;
+    --surface-bright: 255 255 255;
+    --background: 240 244 248;
+    --secondary-container: 221 214 254;
+    --secondary-fixed: 237 233 254;
+    --on-tertiary-fixed: 2 44 34;
+    --inverse-primary: 125 211 252;
+    --error-container: 254 226 226;
+  }
+
+  .dark {
+    --tertiary-container: 27 189 133;
+    --outline: 134 147 151;
+    --inverse-surface: 218 226 253;
+    --inverse-on-surface: 40 48 68;
+    --on-background: 218 226 253;
+    --surface-dim: 11 19 38;
+    --primary-container: 6 182 212;
+    --surface-tint: 76 215 246;
+    --on-tertiary-container: 0 69 46;
+    --on-primary-fixed-variant: 0 78 92;
+    --on-primary-fixed: 0 31 38;
+    --on-secondary-container: 214 169 255;
+    --on-secondary-fixed-variant: 105 0 179;
+    --primary-fixed: 172 237 255;
+    --on-tertiary: 0 56 36;
+    --on-tertiary-fixed-variant: 0 82 54;
+    --secondary: 221 183 255;
+    --on-secondary-fixed: 44 0 81;
+    --on-secondary: 73 0 128;
+    --tertiary-fixed: 111 251 190;
+    --on-error: 105 0 5;
+    --on-surface-variant: 188 201 205;
+    --on-primary: 0 54 64;
+    --outline-variant: 61 73 76;
+    --surface-variant: 45 52 73;
+    --primary-fixed-dim: 76 215 246;
+    --primary: 76 215 246;
+    --on-surface: 218 226 253;
+    --on-error-container: 255 218 214;
+    --tertiary-fixed-dim: 78 222 163;
+    --surface-container-highest: 45 52 73;
+    --tertiary: 78 222 163;
+    --surface-container-low: 19 27 46;
+    --surface: 11 19 38;
+    --surface-container: 23 31 51;
+    --surface-container-lowest: 6 14 32;
+    --secondary-fixed-dim: 221 183 255;
+    --on-primary-container: 0 66 79;
+    --surface-container-high: 34 42 61;
+    --error: 255 180 171;
+    --surface-bright: 49 57 77;
+    --background: 11 19 38;
+    --secondary-container: 111 0 190;
+    --secondary-fixed: 240 219 255;
+    --on-tertiary-fixed: 0 33 19;
+    --inverse-primary: 0 104 122;
+    --error-container: 147 0 10;
+  }
+
+  /* Transition for smooth dark/light mode switching */
+  * {
+    transition: background-color 0.4s ease-in-out, border-color 0.4s ease-in-out, color 0.4s ease-in-out;
+  }
+
+  body {
+    @apply bg-background text-on-surface font-body selection:bg-primary/30;
+  }
+}
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+.heatmap-cell {
+    aspect-ratio: 1/1;
+    width: 12px;
+    border-radius: 2px;
+}
+.glass-card {
+    background: rgb(var(--surface-container-high) / 0.6);
+    backdrop-filter: blur(12px);
+}
+.glass-panel {
+    background: rgb(var(--surface-container-low) / 0.6);
+    backdrop-filter: blur(12px);
+}
+
+/* WebGazer Definitive CSS Fix */
+.is-calibrating #webgazerVideoContainer,
+.is-calibrating #webgazerVideoFeed {
+    display: none !important;
+}
+
+#webgazerVideoContainer {
+    left: auto !important;
+    right: 20px !important;
+    top: 20px !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    border: 3px solid #3b82f6 !important;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.5) !important;
+    z-index: 9999 !important;
+}
+
+#webgazerVideoFeed {
+    transform: scaleX(-1) !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+#webgazerFaceOverlay, #webgazerFaceFeedbackBox {
+    display: none !important; /* Hide the distracting green boxes */
+}

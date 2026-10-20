@@ -1,0 +1,108 @@
+# ===========================
+# Lumen — Root .gitignore
+# ===========================
+
+# ── Runtime state (regenerated on demand) ───────────────────────────────────
+# The vector store holds the learner's own uploads — it is data, not source.
+backend/chroma_db/
+
+# The face-api weights (~13 MB) are copied from node_modules after install.
+Frontend/public/models/
+
+# ──────────────────────────
+# OS / Editor junk
+# ──────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+*.suo
+*.user
+
+# ──────────────────────────
+# Environment / Secrets
+# ──────────────────────────
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+secrets/
+
+# ──────────────────────────
+# Python (backend)
+# ──────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env/
+ENV/
+virtualenv/
+
+# Type checking / linting caches
+.mypy_cache/
+.dmypy.json
+.pyre/
+.pytype/
+.ruff_cache/
+
+# pytest / coverage
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# ──────────────────────────
+# Node / Frontend
+# ──────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.npm/
+
+# Build outputs
+dist/
+build/
+out/
+.next/
+.nuxt/
+.svelte-kit/
+
+# Vite / Parcel caches
+.vite/
+.parcel-cache/
+
+# ──────────────────────────
+# Logs
+# ──────────────────────────
+logs/
+*.log
+pids/
+*.pid
+*.seed
+
+# ──────────────────────────
+# Misc
+# ──────────────────────────
+*.bak
+*.tmp
+*.orig

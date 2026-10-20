@@ -1,0 +1,38 @@
+# ── Web framework ────────────────────────────────────────────────────────────
+# NOTE: FastAPI >= 0.115 is required for Pydantic v2.12+ compatibility.
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+python-multipart>=0.0.9
+
+# ── Data validation & settings ───────────────────────────────────────────────
+pydantic[email]>=2.7.0
+pydantic-settings>=2.3.0
+
+# ── Database ─────────────────────────────────────────────────────────────────
+motor>=3.4.0
+pymongo>=4.7.0
+
+# ── Security ─────────────────────────────────────────────────────────────────
+bcrypt>=4.1.0
+PyJWT>=2.8.0
+python-dotenv>=1.0.0
+
+# ── AI providers ─────────────────────────────────────────────────────────────
+# Text generation goes through the Kilo gateway (an OpenAI-compatible API)
+# and embeddings through NVIDIA NIM — both are plain HTTP, so httpx is all
+# that is needed. No provider SDK is required.
+httpx>=0.27.0
+
+# ── Document parsing ─────────────────────────────────────────────────────────
+pymupdf>=1.24.0
+
+# ── Vector store ─────────────────────────────────────────────────────────────
+# The OpenTelemetry packages below must stay on the SAME minor version as each
+# other. A mismatch (e.g. exporter 1.39 with api/sdk 1.45) breaks the
+# `chromadb` import with `ImportError: cannot import name '_ExtendedAttributes'`.
+chromadb>=1.0.0
+langchain-text-splitters>=0.3.0
+opentelemetry-api>=1.27.0
+opentelemetry-sdk>=1.27.0
+opentelemetry-exporter-otlp-proto-common>=1.27.0
+opentelemetry-exporter-otlp-proto-grpc>=1.27.0

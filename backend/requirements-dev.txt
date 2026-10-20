@@ -1,0 +1,8 @@
+# ── Development / test dependencies ───────────────────────────────────────────
+-r requirements.txt
+
+pytest>=8.0.0
+
+# End-to-end browser tests (backend/tests/test_webapp.py).
+# After installing, run: python -m playwright install chromium
+playwright>=1.44.0

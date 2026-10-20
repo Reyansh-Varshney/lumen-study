@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "Lumen Focus — Distraction-Free YouTube",
+  "version": "1.0.0",
+  "description": "Strips YouTube of recommendations, Shorts, comments and end-screen traps so lectures stay lectures. Pairs with the Lumen study platform.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "Lumen Focus",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["storage"],
+  "host_permissions": ["*://*.youtube.com/*"],
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "css": ["content/content.css"],
+      "js": ["content/content.js"],
+      "run_at": "document_start",
+      "all_frames": false
+    }
+  ],
+  "commands": {
+    "toggle-focus-mode": {
+      "suggested_key": {
+        "default": "Alt+P"
+      },
+      "description": "Toggle Lumen Focus Mode"
+    }
+  }
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lumen Focus</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="ps-head">
+      <div class="ps-brand">
+        <span class="ps-mark"></span>
+        <div>
+          <h1>Lumen Focus</h1>
+          <p>Distraction-free YouTube</p>
+        </div>
+      </div>
+
+      <label class="ps-switch" title="Master switch (Alt+P)">
+        <input type="checkbox" id="enabled" />
+        <span class="ps-track"><span class="ps-thumb"></span></span>
+      </label>
+    </header>
+
+    <main class="ps-body" id="options">
+      <label class="ps-row">
+        <span>
+          <strong>Hide recommendations</strong>
+          <em>Sidebar, end screens and the "up next" rail</em>
+        </span>
+        <input type="checkbox" data-key="hideRecommendations" />
+      </label>
+
+      <label class="ps-row">
+        <span>
+          <strong>Hide comments</strong>
+          <em>Nothing useful was ever said down there</em>
+        </span>
+        <input type="checkbox" data-key="hideComments" />
+      </label>
+
+      <label class="ps-row">
+        <span>
+          <strong>Hide Shorts</strong>
+          <em>Shelves, nav entry and the Shorts player</em>
+        </span>
+        <input type="checkbox" data-key="hideShorts" />
+      </label>
+
+      <label class="ps-row">
+        <span>
+          <strong>Hide masthead</strong>
+          <em>Search bar and account chrome</em>
+        </span>
+        <input type="checkbox" data-key="hideMasthead" />
+      </label>
+
+      <label class="ps-row">
+        <span>
+          <strong>Block home feed</strong>
+          <em>Replaces youtube.com/ with a focus screen</em>
+        </span>
+        <input type="checkbox" data-key="blockHomeFeed" />
+      </label>
+
+      <label class="ps-row">
+        <span>
+          <strong>Cinema mode</strong>
+          <em>Auto theatre layout on watch pages</em>
+        </span>
+        <input type="checkbox" data-key="cinemaMode" />
+      </label>
+
+      <label class="ps-row">
+        <span>
+          <strong>Dim the page</strong>
+          <em>Fades everything except the video</em>
+        </span>
+        <input type="checkbox" data-key="dimMode" />
+      </label>
+    </main>
+
+    <footer class="ps-foot">
+      <button id="open-app" class="ps-primary">Open Lumen</button>
+      <p class="ps-hint">Toggle focus mode anywhere with <kbd>Alt</kbd>+<kbd>P</kbd></p>
+    </footer>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
