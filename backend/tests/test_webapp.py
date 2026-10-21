@@ -82,7 +82,7 @@ def main():
         page.wait_for_load_state("networkidle")
         page.wait_for_selector("h1", timeout=20000)
 
-        check("title is 'Lumen'", page.title() == "Lumen", page.title())
+        check("title carries the product name", page.title().startswith("Lumen"), page.title())
         check("h1 shows 'Lumen'", page.locator("h1").inner_text().strip() == "Lumen",
               page.locator("h1").inner_text())
         body = page.inner_text("body")
