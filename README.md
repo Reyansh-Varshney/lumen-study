@@ -418,3 +418,18 @@ The visible name of the platform is not hard-coded in one place.
 ## 🏅 Credits
 
 _Built as an open study companion. Contributions welcome._
+
+---
+
+## 📄 License
+
+MIT — see [LICENSE](LICENSE).
+
+---
+
+## 🔁 Continuous Integration
+
+Every push runs the offline test suite, the linter and the production build
+via GitHub Actions (`.github/workflows/ci.yml`). The provider tests need live
+API keys, so they are skipped in CI — run `pytest tests/test_providers.py`
+locally to exercise the Kilo gateway and NVIDIA NIM.
